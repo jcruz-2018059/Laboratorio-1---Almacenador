@@ -34,8 +34,9 @@ const userScheme = mongoose.Schema({
     role: {
         type: String,
         required: true,
-        uppercase: true
+        uppercase: true,
+        default: 'TRABAJADOR'
     }
-})
+}, {versionKey: false});
 
 module.exports = mongoose.model('User', userScheme);
