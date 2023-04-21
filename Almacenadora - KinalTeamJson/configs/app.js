@@ -11,12 +11,18 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3200;
 
+const additionalServicesRoutes = require('../src/AdditionalServices/additionalServices.routes');
+
 //Configurar el servidor de express
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
+
+
+//rutas de cada coleccion
+app.use('/additionalServices', additionalServicesRoutes);
 
 //Función para levanter el puerto
 exports.initServer = ()=>{
