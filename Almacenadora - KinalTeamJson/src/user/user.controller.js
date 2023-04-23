@@ -44,6 +44,10 @@ exports.login = async(req, res)=>{
             return res.status(400).send({validate});
         }
         let user = await User.findOne({username: data.username})
+        console.log(user.role);
+        if(user.role !== 'ADMIN' ){
+            return res.status(400).send({message: `You don't have this permission`});
+        }
         if(user && await checkPassword(data.password, user.password)){
             let token = await createToken(user);
             return res.send({message: 'User logged sucessfully.', token});
