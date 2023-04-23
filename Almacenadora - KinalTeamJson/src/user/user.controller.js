@@ -55,3 +55,33 @@ exports.login = async(req, res)=>{
         return res.status(500).send({message: 'Error logging'});
     }
 }
+
+
+exports.create = async(req, res)=>{
+    try{
+        let data = req.body;
+        let params = {
+            name: data.name,
+            surname: data.surname,
+            username: data.username,
+            password: data.password,
+            email: data.email,
+            phone: data.phone
+        } 
+        let validate = validateData(params);
+        if(validate){
+            return res.status(400).send({validate});
+        }
+        let existUsername = await User.findOne({username: data.username});
+        if(existUsername){
+            return res.status(400).send({message: 'username already exists'});
+        }
+        data.role = 'WORKER'
+        data.password = await encrypt(data.password);
+        let user = new User(data);
+        await user.save();
+        return res.send({message: 'User created sucessfully', user});
+    }catch(err){
+        console.error(err);
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Almacenadora - KinalTeam.json",
+    "dateExported": "2023-04-23T23:23:18.941Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "f34820f1-c5d5-46a2-927a-9edc672e43fc",
+            "name": "Admin",
+            "containerId": "",
+            "created": "2023-04-23T23:06:24.709Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Accounts",
+            "containerId": "f34820f1-c5d5-46a2-927a-9edc672e43fc",
+            "created": "2023-04-23T23:06:35.686Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "aee8d936-e9f6-4f82-af95-9fb938b75227",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Create Account",
+            "url": "user/create",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-04-23T23:06:44.734Z",
+            "modified": "2023-04-23T23:16:59.251Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ1YWFmODExOWFmN2IyMjJjMjhlNzEiLCJuYW1lIjoiR2VuZXJhbCIsInN1cm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5Ac3RvcmFnZS5ndCIsInBob25lIjoiKzUwMiA1OTg0IDI2NTgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODIyOTE4MDQsImV4cCI6MTY4MjI5OTAwNH0.T06HUim7g3uloORQpQ-fvPM6Zk1x3cQH6yTMVtl1oHI\""
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "Javier"
+                    },
+                    {
+                        "name": "surname",
+                        "value": "Herrera"
+                    },
+                    {
+                        "name": "username",
+                        "value": "jherrera2"
+                    },
+                    {
+                        "name": "password",
+                        "value": "1324"
+                    },
+                    {
+                        "name": "email",
+                        "value": "jherrera@gmail.com"
+                    },
+                    {
+                        "name": "phone",
+                        "value": "+502 4865 2013"
+                    },
+                    {
+                        "name": "role",
+                        "value": "admin"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "a1956fd4-594a-4664-b41b-247a721a76db",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "f34820f1-c5d5-46a2-927a-9edc672e43fc",
+            "name": "Login",
+            "url": "user/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-04-23T23:09:49.506Z",
+            "modified": "2023-04-23T23:10:31.119Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "admin"
+                    },
+                    {
+                        "name": "password",
+                        "value": "admin"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "localhost:2651/"
+        }
+    }
+}
