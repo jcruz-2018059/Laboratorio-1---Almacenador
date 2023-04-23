@@ -10,6 +10,7 @@ const cors = require('cors');
 //Instancia de express
 const app = express();
 const port = process.env.PORT || 3200;
+const clientRoutes = require('../src/client/client.routes');
 
 //Configurar el servidor de express
 app.use(express.urlencoded({extended:false}));
@@ -17,6 +18,9 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
+
+//Rutas de cada colección 
+app.use('/client', clientRoutes);
 
 //Función para levanter el puerto
 exports.initServer = ()=>{

@@ -43,16 +43,31 @@ exports.getClients = async(req, res)=>{
     }
 }
 
-/*exports.updateClient = async(req, res)=>{
+exports.updateClient = async(req, res)=>{
     try{
         let clientId = req.params.id;
         let data = req.body;
-        let existClient = Client.findOne({_id: clientId})
+        let existClient = Client.findOne({dpi: data.dpi})
         if(existClient){
-            if(data.dpi !=)
+            if(existClient._id != clientId) return res.send({message: 'DPI Client Already Exist'})
+            let updateClient = await Client.findByIdAndUpdate(
+                {_id: clientId},
+                data,
+                {new: true}
+            );
+            if(!updateClient) return res.status(404).send({message: 'Client not Found and not update'})
+            return res.send({updateClient})
         }
+        let updateClient = await Client.findByIdAndUpdate(
+            {_id: clientId},
+            data,
+            {new: true}
+        );
+        if(!updateClient) return res.status(404).send({message: 'Client not Found and not update'})
+        return res.send({updateClient})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error server, Client not updated'})
     }
-}*/
+}
+
