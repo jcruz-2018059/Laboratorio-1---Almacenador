@@ -10,5 +10,7 @@ api.post('/login', userController.login);
 
 //ADMIN
 api.post('/create', [ensureAuth, isAdmin], userController.create);
+api.get('/get', [ensureAuth, isAdmin], userController.getUsers);
+api.get('/get/:id', [ensureAuth, isAdmin], userController.getUser);
 
 module.exports = api;

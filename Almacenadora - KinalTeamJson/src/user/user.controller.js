@@ -60,7 +60,6 @@ exports.login = async(req, res)=>{
     }
 }
 
-
 exports.create = async(req, res)=>{
     try{
         let data = req.body;
@@ -87,5 +86,30 @@ exports.create = async(req, res)=>{
         return res.send({message: 'User created sucessfully', user});
     }catch(err){
         console.error(err);
+        return res.status(500).send({message: 'Error creating user'});
+    }
+}
+
+exports.getUsers = async(req, res)=>{
+    try{
+        let users = await User.find().select('name surname username email phone');
+        return res.send({message: 'Users found: ', users});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting users'});
+    }
+}
+
+exports.getUser = async(req, res)=>{
+    try{
+        let userId = req.params.id;
+        let user = await User.findOne({_id: userId}).select('name surname username email phone');
+        if(!user){
+            return res.status(404).send({message: 'User not found'});
+        }
+        return res.send({message: 'User found: ', user});
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({message: 'Error getting user'});
     }
 }
