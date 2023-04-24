@@ -10,5 +10,6 @@ api.get('/', storeController.test);
 //ADMIN
 api.post('/add', [ensureAuth, isAdmin], storeController.add);
 api.get('/get', [ensureAuth, isAdmin], storeController.get);
+api.get('/get/:availability', [ensureAuth, isAdmin], storeController.getByAvailability);
 
 module.exports = api;

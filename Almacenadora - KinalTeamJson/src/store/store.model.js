@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const storeScheme = mongoose.Schema({
     name:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     description:{
         type: String,

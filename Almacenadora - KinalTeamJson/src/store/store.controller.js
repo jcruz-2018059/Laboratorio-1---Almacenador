@@ -22,6 +22,10 @@ exports.add = async(req, res)=>{
         if(validate){
             return res.status(400).send({validate});
         }
+        let existStore = await Store.findOne({name: data.name});
+        if(existStore){
+            return res.status(400).send({message: 'store already exists'});
+        }
         let store = new Store(data);
         await store.save();
         return res.send({message: 'Store created sucessfully: ', store});
@@ -34,6 +38,17 @@ exports.add = async(req, res)=>{
 exports.get = async(req, res)=>{
     try{
         let stores = await Store.find();
+        return res.send({message: 'Stores found: ', stores});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting store'});
+    }
+}
+
+exports.getByAvailability = async(req, res)=>{
+    try{
+        let availabilityValue = req.params.availability;
+        let stores = await Store.find({availability: availabilityValue});
         return res.send({message: 'Stores found: ', stores});
     }catch(err){
         console.error(err);
