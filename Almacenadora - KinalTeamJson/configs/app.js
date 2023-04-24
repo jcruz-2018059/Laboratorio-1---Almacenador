@@ -13,6 +13,7 @@ const port = process.env.PORT || 3200;
 
 // Rutas
 const userRoutes = require('../src/user/user.routes');
+const storeRoutes = require('../src/store/store.routes');
 
 //Configurar el servidor de express
 app.use(express.urlencoded({extended:false}));
@@ -22,6 +23,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.use('/user', userRoutes);
+app.use('/store', storeRoutes);
 
 //Función para levanter el puerto
 exports.initServer = ()=>{
