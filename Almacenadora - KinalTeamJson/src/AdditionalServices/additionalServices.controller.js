@@ -28,3 +28,20 @@ exports.getAdditionalServices = async(req,res)=>{
         return res.status(500).send({message: 'Error getting Additional Services'});
     }
 }
+
+exports.updateAdditionalServices = async(req,res)=>{
+    try{
+        let data = req.body;
+        let serviceId = req.params.id;
+        let updateService = await AdditionalServies.findOneAndUpdate(
+            {_id: serviceId},
+            data,
+            {name: true}
+        )
+        if(!updateService) return res.status(404).send({message: 'Error updating Additional Services'});
+        return res.send({updateService});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error updating Additional Services', error:err.message});
+    }
+}
