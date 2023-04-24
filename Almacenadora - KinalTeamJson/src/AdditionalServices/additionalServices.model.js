@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const additionalServiceSchema = mongoose.Schema({
     name:{
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        lowercase: true
     },
     description: {
         type: String,
