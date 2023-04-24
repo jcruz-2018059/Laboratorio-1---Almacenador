@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Almacenadora - KinalTeam.json",
-    "dateExported": "2023-04-23T23:23:18.941Z",
+    "dateExported": "2023-04-24T00:32:28.182Z",
     "version": "1.1",
     "folders": [
         {
@@ -13,7 +13,7 @@
         },
         {
             "_id": "383d5475-c795-4de1-a1fb-7f3277aff46b",
-            "name": "Accounts",
+            "name": "Users",
             "containerId": "f34820f1-c5d5-46a2-927a-9edc672e43fc",
             "created": "2023-04-23T23:06:35.686Z",
             "sortNum": 20000
@@ -29,7 +29,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-04-23T23:06:44.734Z",
-            "modified": "2023-04-23T23:16:59.251Z",
+            "modified": "2023-04-24T00:30:34.387Z",
             "headers": [
                 {
                     "name": "Authorization",
@@ -67,7 +67,8 @@
                     },
                     {
                         "name": "role",
-                        "value": "admin"
+                        "value": "admin",
+                        "isDisabled": true
                     }
                 ]
             },
@@ -82,7 +83,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-04-23T23:09:49.506Z",
-            "modified": "2023-04-23T23:10:31.119Z",
+            "modified": "2023-04-24T00:27:55.313Z",
             "headers": [],
             "params": [],
             "body": {
@@ -99,6 +100,118 @@
                     }
                 ]
             },
+            "tests": []
+        },
+        {
+            "_id": "b4d60d83-cbc3-4ac9-a25c-f4a26d051a2d",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Get Users",
+            "url": "user/get",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-04-23T23:58:43.419Z",
+            "modified": "2023-04-23T23:59:13.437Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ1YWFmODExOWFmN2IyMjJjMjhlNzEiLCJuYW1lIjoiR2VuZXJhbCIsInN1cm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5Ac3RvcmFnZS5ndCIsInBob25lIjoiKzUwMiA1OTg0IDI2NTgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODIyOTM4NTQsImV4cCI6MTY4MjMwMTA1NH0.ra33jeSwadcbTCGqRBVcLsTWdePGrc6GxgxUPR2-ZmE\""
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "34fdc5c3-cb95-4057-bbd8-519eebd0349f",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Get User",
+            "url": "user/get/6445aaf8119af7b222c28e71",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-04-24T00:05:36.571Z",
+            "modified": "2023-04-24T00:07:02.063Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ1YWFmODExOWFmN2IyMjJjMjhlNzEiLCJuYW1lIjoiR2VuZXJhbCIsInN1cm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5Ac3RvcmFnZS5ndCIsInBob25lIjoiKzUwMiA1OTg0IDI2NTgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODIyOTM4NTQsImV4cCI6MTY4MjMwMTA1NH0.ra33jeSwadcbTCGqRBVcLsTWdePGrc6GxgxUPR2-ZmE\""
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a2cdf0c1-cd7a-47de-b653-42d42f642f88",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Update User",
+            "url": "user/update/6445bc6bc60468e48c1c85d7",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2023-04-24T00:16:33.807Z",
+            "modified": "2023-04-24T00:18:54.469Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ1YWFmODExOWFmN2IyMjJjMjhlNzEiLCJuYW1lIjoiR2VuZXJhbCIsInN1cm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5Ac3RvcmFnZS5ndCIsInBob25lIjoiKzUwMiA1OTg0IDI2NTgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODIyOTM4NTQsImV4cCI6MTY4MjMwMTA1NH0.ra33jeSwadcbTCGqRBVcLsTWdePGrc6GxgxUPR2-ZmE\""
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "Abimael"
+                    },
+                    {
+                        "name": "surname",
+                        "value": "López"
+                    },
+                    {
+                        "name": "username",
+                        "value": "alopez"
+                    },
+                    {
+                        "name": "password",
+                        "value": "12345",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "email",
+                        "value": "alopez@gmail.com"
+                    },
+                    {
+                        "name": "phone",
+                        "value": "+502 5478 6501"
+                    },
+                    {
+                        "name": "role",
+                        "value": "admin",
+                        "isDisabled": true
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "3bd9fec4-98ff-4531-8f59-dc1cff2a88b0",
+            "colId": "d8722f62-0456-4c7c-8035-f3cf1322c94d",
+            "containerId": "383d5475-c795-4de1-a1fb-7f3277aff46b",
+            "name": "Delete User",
+            "url": "user/delete/6445cdeb3959d116e4f48e77",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2023-04-24T00:26:27.849Z",
+            "modified": "2023-04-24T00:31:44.385Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ1YWFmODExOWFmN2IyMjJjMjhlNzEiLCJuYW1lIjoiR2VuZXJhbCIsInN1cm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5Ac3RvcmFnZS5ndCIsInBob25lIjoiKzUwMiA1OTg0IDI2NTgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODIyOTYwNzUsImV4cCI6MTY4MjMwMzI3NX0.vUioK367gnvgl0vFT9m8z_4xvvis3VuQL94eaVyOJLk\""
+                }
+            ],
+            "params": [],
             "tests": []
         }
     ],

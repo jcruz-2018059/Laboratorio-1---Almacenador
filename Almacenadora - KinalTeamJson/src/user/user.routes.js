@@ -13,5 +13,6 @@ api.post('/create', [ensureAuth, isAdmin], userController.create);
 api.get('/get', [ensureAuth, isAdmin], userController.getUsers);
 api.get('/get/:id', [ensureAuth, isAdmin], userController.getUser);
 api.put('/update/:id', [ensureAuth, isAdmin], userController.update);
+api.delete('/delete/:id', [ensureAuth, isAdmin], userController.delete);
 
 module.exports = api;

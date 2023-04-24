@@ -30,16 +30,3 @@ exports.checkPassword = async(password, hash)=>{
         return false;
     }
 }
-
-exports.deleteSensitiveData = (user)=>{
-    try{
-        delete user.password;
-        delete user.role;
-        delete user.username;
-        delete user.cart;
-        delete user.role;
-    }catch(err){
-        console.error(err);
-        return err;
-    }
-}

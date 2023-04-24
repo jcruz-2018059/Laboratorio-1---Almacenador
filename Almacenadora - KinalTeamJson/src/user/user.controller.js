@@ -145,3 +145,21 @@ exports.update = async(req, res)=>{
         return res.status(500).send({message: 'Error updating user'});
     }
 }
+
+exports.delete = async(req, res)=>{
+    try{
+        let userId = req.params.id;
+        let user = await User.findOne({_id: userId});
+        if(user.username === 'admin'){
+            return res.status(401).send({message: 'Not authorized'});
+        }
+        let deletedUser = await User.findOneAndDelete({_id: userId});
+        if(!deletedUser){
+            return res.status(404).send({message:'User not found and not deleted'});
+        }
+        return res.send({message: 'User deleted sucessfully', deletedUser});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error deleting user'});
+    }
+}
