@@ -87,3 +87,17 @@ exports.update = async(req, res)=>{
         return res.status(500).send({message: 'Error updating store'});
     }
 }
+
+exports.delete = async(req, res)=>{
+    try{
+        let storeId = req.params.id;
+        let deletedStore = await Store.findOneAndDelete({_id: storeId});
+        if(!deletedStore){
+            return res.status(404).send({message:'Store not found and not deleted'});
+        }
+        return res.send({message: 'Store deleted sucessfully', deletedStore});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error deleting store'});
+    }
+}

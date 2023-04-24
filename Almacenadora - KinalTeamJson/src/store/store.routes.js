@@ -12,5 +12,6 @@ api.post('/add', [ensureAuth, isAdmin], storeController.add);
 api.get('/get', [ensureAuth, isAdmin], storeController.get);
 api.get('/get/:availability', [ensureAuth, isAdmin], storeController.getByAvailability);
 api.put('/update/:id', [ensureAuth, isAdmin], storeController.update);
+api.delete('/delete/:id', [ensureAuth, isAdmin], storeController.delete);
 
 module.exports = api;
