@@ -55,3 +55,35 @@ exports.getByAvailability = async(req, res)=>{
         return res.status(500).send({message: 'Error getting store'});
     }
 }
+
+exports.update = async(req, res)=>{
+    try{
+        let data = req.body;
+        let storeId = req.params.id;
+        let existStore = await Store.findOne({_id: storeId});
+        if(!existStore){
+            return res.status(404).send({message: 'Store not found'});
+        }
+        if(Object.entries(data).length === 0){
+            return res.status(400).send({message: 'Data cannot be updated'});
+        }
+        if(data.name){
+            let existStore = await Store.findOne({name: data.name});
+            if(existStore){
+                return res.status(400).send({message: 'Store already exists'});
+            }
+        }
+        let updatedStore = await Store.findOneAndUpdate(
+            {_id: storeId},
+            data,
+            {new: true}
+        );
+        if(!updatedStore){
+            return res.status(404).send({message: 'Store not found and not updated'});
+        }
+        return res.send({message: 'Store updated: ', updatedStore});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error updating store'});
+    }
+}
