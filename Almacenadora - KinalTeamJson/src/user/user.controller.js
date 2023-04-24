@@ -113,3 +113,35 @@ exports.getUser = async(req, res)=>{
         return res.status(500).send({message: 'Error getting user'});
     }
 }
+
+exports.update = async(req, res)=>{
+    try{
+        let data = req.body;
+        let userId = req.params.id;
+        let existUser = await User.findOne({_id: userId});
+        if(!existUser){
+            return res.status(404).send({message: 'User not found'});
+        }
+        if(data.password || Object.entries(data).length === 0 || data.role){
+            return res.status(400).send({message: 'Data cannot be updated'});
+        }
+        if(data.username){
+            let existUsername = await User.findOne({username: data.username});
+            if(existUsername){
+                return res.status(400).send({message: 'Username already exists'});
+            }
+        }
+        let updatedUser = await User.findByIdAndUpdate(
+            {_id: userId},
+            data,
+            {new: true}
+        );
+        if(!updatedUser){
+            return res.status(404).send({message: 'User not found and not updated'});
+        }
+        return res.send({message: 'User updated: ', updatedUser});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error updating user'});
+    }
+}

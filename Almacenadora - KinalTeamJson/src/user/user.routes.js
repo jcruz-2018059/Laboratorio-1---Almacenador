@@ -12,5 +12,6 @@ api.post('/login', userController.login);
 api.post('/create', [ensureAuth, isAdmin], userController.create);
 api.get('/get', [ensureAuth, isAdmin], userController.getUsers);
 api.get('/get/:id', [ensureAuth, isAdmin], userController.getUser);
+api.put('/update/:id', [ensureAuth, isAdmin], userController.update);
 
 module.exports = api;
