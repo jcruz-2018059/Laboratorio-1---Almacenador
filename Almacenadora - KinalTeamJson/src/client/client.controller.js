@@ -35,7 +35,7 @@ exports.getClient = async(req, res)=>{
 
 exports.getClients = async(req, res)=>{
     try{
-        let categories = Client.find()
+        let categories = await Client.find()
         return res.send({categories});
     }catch(err){
         console.error(err);
@@ -47,7 +47,7 @@ exports.updateClient = async(req, res)=>{
     try{
         let clientId = req.params.id;
         let data = req.body;
-        let existClient = Client.findOne({dpi: data.dpi})
+        let existClient = await Client.findOne({dpi: data.dpi})
         if(existClient){
             if(existClient._id != clientId) return res.send({message: 'DPI Client Already Exist'})
             let updateClient = await Client.findByIdAndUpdate(
