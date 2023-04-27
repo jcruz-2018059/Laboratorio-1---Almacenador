@@ -9,7 +9,8 @@ const leaseSchema = mongoose.Schema({
     },
     client: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Client',
-        required: true
+        required: true,
+        unique: true
     },
     store:{
         type: mongoose.Schema.Types.ObjectId, ref: 'Store',
@@ -23,6 +24,9 @@ const leaseSchema = mongoose.Schema({
         type: Number,
         requierd: true
     }
-})
+},
+{
+    versionKey: false
+});
 
 module.exports = mongoose.model('Lease', leaseSchema);

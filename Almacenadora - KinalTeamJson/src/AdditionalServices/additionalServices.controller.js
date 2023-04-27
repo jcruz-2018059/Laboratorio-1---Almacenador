@@ -36,7 +36,7 @@ exports.updateAdditionalServices = async(req,res)=>{
         let updateService = await AdditionalServies.findOneAndUpdate(
             {_id: serviceId},
             data,
-            {name: true}
+            {new: true}
         )
         if(!updateService) return res.status(404).send({message: 'Error updating Additional Services'});
         return res.send({updateService});
