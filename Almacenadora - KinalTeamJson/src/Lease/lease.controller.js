@@ -33,7 +33,7 @@ exports.addClient = async(req, res)=>{
 
         let updatadeAvailability = await Store.findOneAndUpdate(
             {_id: data.store},
-            {params},
+            {$push : {store: params}},
             {new: true}
         )
         if(!updatadeAvailability) return res.status(404).send({message: 'Store Can not be updated'});
