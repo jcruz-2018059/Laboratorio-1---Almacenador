@@ -1,9 +1,43 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Index'
+
 
 
 export const LoginPage = () => {
-  
+  const navigate = useNavigate()
+  const { setLoggedIn, loggedIn } = useContext(AuthContext);
+  const [form, setForm] = useState({
+      username: '',
+      password: ''
+  })
+
+  const handleChange = (e) => {
+      setForm({
+          ...form,
+          [e.target.name]: e.target.value
+      })
+  }
+
+  const login = async (e) => {
+      try {
+          e.preventDefault()
+          const { data } = await axios.post('http://localhost:2651/user/login', form)
+          if (data.token) {
+              setLoggedIn(true)
+              console.log(loggedIn)
+              localStorage.setItem('token', data.token)
+              navigate('/start')
+          }
+      } catch (err) {
+          console.log(err)
+          alert(err.response.data.message)
+          throw new Error('Error login failed')
+      }
+  }
+
     return (
       <>
         <div className="container py-5 h-100">
@@ -29,16 +63,16 @@ export const LoginPage = () => {
   
                         <div className="form-outline mb-4">
                           <label className="form-label" htmlFor="form2Example17" >Nombre de usuario</label>
-                          <input type="username" id="form2Example17" className="form-control form-control-lg" name='username'  required />
+                          <input onChange={handleChange} type="username" id="form2Example17" className="form-control form-control-lg" name='username'  required />
                         </div>
   
                         <div className="form-outline mb-4">
                           <label className="form-label" htmlFor="form2Example27" >Contraseña</label>
-                          <input type="password" id="form2Example27" className="form-control form-control-lg" name='password'  required/>
+                          <input onChange={handleChange} type="password" id="form2Example27" className="form-control form-control-lg" name='password'  required/>
                         </div>
   
                         <div className="pt-1 mb-4">
-                          <Link to='/start' className="btn btn-dark btn-lg btn-block" type="submit" >Iniciar Sesión</Link>
+                          <button onClick={(e)=> login(e)} className='btn btn-dark btn-lg btn-success'>Inciar Sesión</button>
                         </div>
   
                         <a className="small text-muted" href="#!">Olvidaste tu contarseña</a>
