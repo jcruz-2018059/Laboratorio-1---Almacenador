@@ -20,6 +20,8 @@ const userSchema = mongoose.Schema({
         type: Number,
         required: true
     }
+},{
+    versionKey: false
 });
 
 module.exports = mongoose.model('Client', userSchema);
