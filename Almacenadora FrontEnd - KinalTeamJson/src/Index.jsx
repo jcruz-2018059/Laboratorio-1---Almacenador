@@ -12,6 +12,8 @@ import { AddUser } from './pages/UserPages/AddUser'
 import { Table } from './components/Tables/Table'
 import { UpdateUser } from './pages/UserPages/UpdateUser'
 import { ClientPage } from './pages/ClientPages/ClientPage'
+import { StorePage } from './pages/Storepages/StorePage'
+import { TableStore } from './components/Tables/TableStore'
 
 export const AuthContext = createContext();
 
@@ -71,6 +73,18 @@ export const Index = () => {
                             path: 'clients',
                             element: <ClientPage></ClientPage>,
                             children:[
+                                
+                            ]
+                        },
+
+                        {
+                            path: 'store',
+                            element: <StorePage></StorePage>,
+                            children:[ 
+                                {
+                                    path: '',
+                                    element: <TableStore></TableStore>
+                                }
                                 
                             ]
                         }
