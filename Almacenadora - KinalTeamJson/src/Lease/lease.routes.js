@@ -5,6 +5,7 @@ const express = require('express');
 const api = express.Router();
  
 api.get('/', leaseController.test);
-api.put('/addLease', leaseController.addClient);
+api.put('/addLease', leaseController.addLease);
+api.get('/getDisabled', leaseController.getStoreDisabled);
 
 module.exports = api;

@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const leaseSchema = mongoose.Schema({
-    fecha:{
+    date:{
         type: Date,
         required: true
     },
