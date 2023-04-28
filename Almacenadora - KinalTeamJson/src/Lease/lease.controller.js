@@ -12,7 +12,9 @@ exports.test = (req,res)=>{
 
 exports.getStoreDisabled = async(req, res)=>{
     try{
-        let leaseDisabled = await Lease.find({}).populate('client');
+        let leaseDisabled = await Lease.find({}).
+                                                populate('client').
+                                                populate('store');
         if(!leaseDisabled) return res.status(500).send({message: 'Lease not found'});
         return res.send({leaseDisabled});
     }catch(err){
@@ -72,6 +74,20 @@ exports.addAdditionalServices = async(req,res)=>{
         if(!existService) return res.status(404).send({message: 'Additional Service not found'});
     }catch(err){
         console.error(err);
-        return res.status(500).send({message: 'Error adding additional services'});
+        return res.status(500).send({message: 'Error adding additional services', error: err.message});
+    }
+}
+
+exports.updateLease = async(req,res)=>{
+    try{
+        let data = req.body;
+        let leaseID = req.params.id;
+        let beforeStore = await Store.findOne({_id: data.before});
+        let afterStore = await Store.findOne({_id: data.after});
+
+        if(!leaseID &&!beforeStore && !afterStore) return res.status(404).send({message: 'Cellars and Lease not found'});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error Updating Lease', error: err.message});
     }
 }
