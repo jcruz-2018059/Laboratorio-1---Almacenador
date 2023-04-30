@@ -15,6 +15,11 @@ import { ClientPage } from './pages/ClientPages/ClientPage'
 import { TableClient } from './components/Tables/TableClient'
 import { AddClientPage } from './pages/ClientPages/AddClientPage'
 import { UpdateClientPage } from './pages/ClientPages/UpdateClientPage'
+import { AdditionalServicesPage } from './pages/AdditionalServicesPages/AdditionalServicesPage'
+import { TableAdditionalServices } from './components/Tables/TableAdditionalServices'
+import { AddAdditionalServicesPage } from './pages/AdditionalServicesPages/AddAditionalServicesPage'
+import { UpdateAdditionalServices } from './pages/AdditionalServicesPages/UpdateAdditionalServicesPage'
+
 
 export const AuthContext = createContext();
 
@@ -85,8 +90,25 @@ export const Index = () => {
                                 {
                                     path: 'update/:id',
                                     element: <UpdateClientPage></UpdateClientPage>
+                                },     
+                            ]    
+                        },
+                        {
+                            path: 'AdditionalServices',
+                            element: <AdditionalServicesPage></AdditionalServicesPage>,
+                            children: [
+                                {
+                                    path: '',
+                                    element: <TableAdditionalServices></TableAdditionalServices>
+                                },
+                                {
+                                    path: 'add',
+                                    element: <AddAdditionalServicesPage></AddAdditionalServicesPage>
+                                },
+                                {
+                                    path: 'update/:id',
+                                    element: <UpdateAdditionalServices></UpdateAdditionalServices>
                                 }
-                                
                             ]
                         }
                     ]
