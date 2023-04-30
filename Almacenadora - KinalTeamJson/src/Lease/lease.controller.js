@@ -91,3 +91,27 @@ exports.updateLease = async(req,res)=>{
         return res.status(500).send({message: 'Error Updating Lease', error: err.message});
     }
 }
+
+exports.deleteLease = async(req,res)=>{
+    try{
+        let leaseID = req.params.id;
+
+        let store = await Lease.findOne({_id: leaseID})
+
+        let storeUpdate = await Store.findOneAndUpdate(
+            {_id: store.store._id},
+            {availability: true},
+            {new: true}
+        )
+        if(!storeUpdate) return res.status(404).send({message: 'Store not found, not updated'});
+
+        let deleteLease = await Lease.findOneAndRemove({_id: leaseID});
+        if(!deleteLease) return  res.status(404).send({message: 'Lease not found not deleted'});
+
+        return res.send({deleteLease, storeUpdate});
+
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error delete '})
+    }
+}
