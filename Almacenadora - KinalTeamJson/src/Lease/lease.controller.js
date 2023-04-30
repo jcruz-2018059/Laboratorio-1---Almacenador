@@ -82,10 +82,33 @@ exports.updateLease = async(req,res)=>{
     try{
         let data = req.body;
         let leaseID = req.params.id;
-        let beforeStore = await Store.findOne({_id: data.before});
-        let afterStore = await Store.findOne({_id: data.after});
 
-        if(!leaseID &&!beforeStore && !afterStore) return res.status(404).send({message: 'Cellars and Lease not found'});
+        let store = await Lease.findOne({_id: leaseID});
+        
+        let updateStoreBefore = await Store.findOneAndUpdate(
+            {_id: store.store._id},
+            {availability: true},
+            {new: true}   
+        )
+        if(!updateStoreBefore) return res.status(404).send({message: 'Store  not found not update'});
+
+        let updateLease = await Lease.findOneAndUpdate(
+            {_id: leaseID},
+            data,
+            {new: true}
+        )
+        if(!updateLease) return res.status(404).send({message: 'Lease not found not Updated'});
+
+        let updateStoreAfter = await Store.findOneAndUpdate(
+            {_id: data.store},
+            {availability: false},
+            {new: true},
+        )
+        if(!updateStoreAfter) return res.status(404).send({message: 'Store not found not updated'});
+
+        return res.send({updateLease, updateStoreAfter, updateStoreBefore});
+
+       
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error Updating Lease', error: err.message});

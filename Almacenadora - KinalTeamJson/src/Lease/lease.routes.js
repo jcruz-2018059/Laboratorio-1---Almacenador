@@ -8,5 +8,6 @@ api.get('/', leaseController.test);
 api.put('/addLease', leaseController.addLease);
 api.get('/getDisabled', leaseController.getStoreDisabled);
 api.put('/deleteLease/:id', leaseController.deleteLease);
+api.put('/updateLease/:id', leaseController.updateLease);
 
 module.exports = api;
