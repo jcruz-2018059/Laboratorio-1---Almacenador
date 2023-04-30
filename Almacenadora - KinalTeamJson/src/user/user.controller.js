@@ -146,6 +146,7 @@ exports.update = async(req, res)=>{
     }
 }
 
+//something new
 exports.delete = async(req, res)=>{
     try{
         let userId = req.params.id;
