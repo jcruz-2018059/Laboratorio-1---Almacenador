@@ -37,11 +37,17 @@ exports.addLease = async(req, res)=>{
         let subtotal = storePrice + servicesPrice;
 
         //Params
+        let service = {
+            name: additionalServices.name,
+            description: additionalServices.description,
+            price: additionalServices.price
+        }
+
         let params = {
             date: data.date,
             client: data.client,
             store: data.store,
-            additionalServices: data.additionalServices,
+            additionalServices: service,
             total: subtotal
         }
 
@@ -67,11 +73,25 @@ exports.addLease = async(req, res)=>{
 exports.addAdditionalServices = async(req,res)=>{
     try{
         let data = req.body; 
-        let serviceID = req.params.id;
-        let validate = validateData();
+        let leaseID = req.params.id;
 
-        let existService = await AdditionalServices.findOne({_id: serviceID});
+        let existLease = await Lease.findOne({_id: leaseID});
+        if(!existLease) return  res.status(404).send({message: 'Lease not found'});
+        let existService = await AdditionalServices.findOne({_id: data.additionalService});
         if(!existService) return res.status(404).send({message: 'Additional Service not found'});
+
+        let seletcService = {
+            id: existService._id,
+            name: existService.name,
+            price: existService.price,
+        }
+        total = existLease.total + seletcService.price;
+        let updateServiceLease = await Lease.findOneAndUpdate(
+            {_id: leaseID},
+            {$push : {additionalServices: seletcService}, total: total},
+            {new: true}
+        )
+        return res.send({message: 'Additional Service add Successfullly', updateServiceLease})
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error adding additional services', error: err.message});

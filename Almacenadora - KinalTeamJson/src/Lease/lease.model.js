@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const leaseSchema = mongoose.Schema({
     date:{
         type: Date,
-        required: true
+        required: true,
+        default: Date()
     },
     client: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Client',
