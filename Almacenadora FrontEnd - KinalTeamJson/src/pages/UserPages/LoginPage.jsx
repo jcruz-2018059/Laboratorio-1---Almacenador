@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Index'
-
+import { Navbar } from '../../components/Nabvar'
 
 
 export const LoginPage = () => {
@@ -40,6 +40,7 @@ export const LoginPage = () => {
 
     return (
       <>
+      <Navbar></Navbar>
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">

@@ -8,7 +8,6 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.jsx'
 function App() {
   return (
     <>
-    <Navbar></Navbar>
     <Outlet></Outlet>
     </>
     
