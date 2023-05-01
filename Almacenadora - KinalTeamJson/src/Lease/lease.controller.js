@@ -38,6 +38,7 @@ exports.addLease = async(req, res)=>{
 
         //Params
         let service = {
+            id: additionalServices._id,
             name: additionalServices.name,
             description: additionalServices.description,
             price: additionalServices.price
@@ -83,6 +84,7 @@ exports.addAdditionalServices = async(req,res)=>{
         let seletcService = {
             id: existService._id,
             name: existService.name,
+            description: existService.description,
             price: existService.price,
         }
         total = existLease.total + seletcService.price;
