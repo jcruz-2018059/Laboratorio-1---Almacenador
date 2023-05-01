@@ -77,7 +77,7 @@ exports.create = async(req, res)=>{
         }
         let existUsername = await User.findOne({username: data.username});
         if(existUsername){
-            return res.status(400).send({message: 'username already exists'});
+            return res.status(400).send({message: 'Username already exists'});
         }
         data.role = 'WORKER'
         data.password = await encrypt(data.password);
@@ -146,6 +146,7 @@ exports.update = async(req, res)=>{
     }
 }
 
+//something new
 exports.delete = async(req, res)=>{
     try{
         let userId = req.params.id;

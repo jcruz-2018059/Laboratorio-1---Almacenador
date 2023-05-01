@@ -35,7 +35,7 @@ const userScheme = mongoose.Schema({
         type: String,
         required: true,
         uppercase: true,
-        default: 'TRABAJADOR'
+        default: 'WORKER'
     }
 }, {versionKey: false});
 
