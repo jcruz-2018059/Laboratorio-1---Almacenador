@@ -11,34 +11,34 @@ export const Menu = () => {
       </div>
       <div className="container pt-5">
           <div className="row justify-content-center align-items-center">
-              <div className="card  col-sm-4 m-3" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                      <h5 className="card-title">Gestionar Trabajadores</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div className="card  col-sm-4 m-3 " style={{ width: "21rem", backgroundColor: "#ff006e" }}>
+                  <div className="card-body text-center">
+                      <h3 className="card-title text-light" >Gestionar Usuarios</h3>
+                      <p className="card-text text-light">Al acceder a esta función, podrá gestionar sus trabajadores de forma rápida y sencilla.</p>
                       <Link to='workers' className="btn btn-primary">Gestionar</Link>
                   </div>
               </div>
-              <div className="card col-sm-4 m-3" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                      <h5 className="card-title">Gestionar Bodegas</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div className="card col-sm-4 m-3" style={{ width: "21rem", backgroundColor: "#8338ec"  }}>
+                  <div className="card-body text-center">
+                      <h3 className="card-title text-light">Gestionar Bodegas</h3>
+                      <p className="card-text text-light">Al acceder a esta función, podrá gestionar sus bodegas de forma rápida y sencilla.</p>
                       <a href="#" className="btn btn-primary">Gestionar</a>
                   </div>
               </div>
           </div>
 
           <div className="row justify-content-center align-items-center">
-              <div className="card col-sm-4 m-3" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                      <h5 className="card-title">Gestion de Servicios Adicionales</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" className="btn btn-primary">Gestionar</a>
+              <div className="card col-sm-4 m-3" style={{ width: "21rem", backgroundColor: "#3a86ff"  }}>
+                  <div className="card-body text-center">
+                      <h3 className="card-title text-light">Gestionar Servicios</h3>
+                      <p className="card-text text-light">Al acceder a esta función, podrá gestionar sus servicios de forma rápida y sencilla.</p>
+                      <Link to='AdditionalServices' className="btn btn-primary">Gestionar</Link>
                   </div>
               </div>
-              <div className="card col-sm-4 m-3" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                      <h5 className="card-title">Gestionar Cuentas</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div className="card col-sm-4 m-3" style={{ width: "21rem", backgroundColor: "#f48c06"  }}>
+                  <div className="card-body text-center">
+                      <h3 className="card-title text-light">Gestionar Cuentas</h3>
+                      <p className="card-text text-light">Al acceder a esta función, podrá gestionar sus cuentas de forma rápida y sencilla.</p>
                       <Link to='clients' className="btn btn-primary">Gestionar</Link>
                   </div>
               </div>

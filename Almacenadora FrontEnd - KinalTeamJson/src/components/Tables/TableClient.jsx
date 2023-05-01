@@ -48,9 +48,12 @@ export const TableClient = () => {
                     </div>
 
                 <div className="container">
-                    <div className='mb-5'>
+                    <div className='mb-5 d-flex justify-content-between'>
                         <Link to='/start'>
                         <button className='btn btn-primary'>Volver al tablero</button>
+                        </Link>
+                        <Link to='add' className='ms-auto'>
+                        <button className='btn btn-secondary'>Agregar Cliente</button>
                         </Link>
                     </div>
                     <table className="table">
