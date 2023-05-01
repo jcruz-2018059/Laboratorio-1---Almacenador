@@ -1,10 +1,11 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Users } from '../Collections/Users';
+import { Stores } from '../Collections/Stores';
 
-export const Table = () => {
+
+export const TableStore = () => {
     const token = localStorage.getItem('token');
 
     const config = {
@@ -13,77 +14,78 @@ export const Table = () => {
         }
     }
 
-    const [users, setUsers] = useState([{}])
-    const [loading, setLoading] = useState(true)
+    const [store, setStore] = useState([{}])
 
-    const getUsers = async () => {
+
+    const getStore = async () => {
         try {
-            const { data } = await axios('http://localhost:2651/user/get', config)
-            setUsers(data.users)
-            setLoading(false)
+            const { data } = await axios('http://localhost:2651/store/get', config)
+            setStore(data.stores)
+
         } catch (err) {
             console.log(err)
         }
     }
 
-    const deleteUser = async (id) => {
+    const deleteStore = async (id) => {
         try {
-            let confirmDelete = confirm('Estás seguro de eliminar este Usuario?')
+            let confirmDelete = confirm('Estás seguro de eliminar esta Bodega?')
             if (confirmDelete) {
-                const { data } = await axios.delete(`http://localhost:2651/user/delete/${id}`, config)
+                const { data } = await axios.delete(`http://localhost:2651/store/delete/${id}`, config)
                 console.log(data)
-                getUsers()
+                getStore()
             }
         } catch (err) {
             console.error(err)
         }
     }
 
-    useEffect(() => getUsers, [])
-
+    useEffect(() => getStore, [])
 
     return (
         <>
             <div className='title'>
-                <h1 className='text-center pt-5 pb-5'>Usuarios</h1>
+                <h1 className='text-center pt-5 pb-5'>Bodegas</h1>
             </div>
 
             <div className="container">
                 <div className='mb-5 d-flex justify-content-between'>
                     <Link to='/start'>
-                    <button className='btn btn-primary'>Volver al tablero</button>
+                        <button className='btn btn-primary'>Volver al tablero</button>
                     </Link>
                     <form className="d-flex ms-auto " role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                     <Link to='add' className='ms-auto'>
-                    <button className='btn btn-secondary'>Agregar Cuenta</button>
+                        <button className='btn btn-secondary'>Agregar Bodega</button>
                     </Link>
                 </div>
                 <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Ubicacion</th>
+                            <th scope="col">Tamaño</th>
+                            <th scope="col">Disponibilidad</th>
+                            <th scope="col">precio</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            users.map(({ _id, name, surname, username, email, phone }, index) => {
+                            store.map(({ _id, name, description, location, size, availability, price }, index) => {
                                 return (
                                     <tr key={index}>
-                                        <Users
+                                        <Stores
                                             name={name}
-                                            surname={surname}
-                                            username={username}
-                                            email={email}
-                                            phone={phone}
-                                        ></Users>
+                                            description={description}
+                                            location={location}
+                                            size={size}
+                                            availability={availability}
+                                            price={price}
+                                        ></Stores>
                                         <td>
                                             <Link to={`update/${_id}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -91,7 +93,7 @@ export const Table = () => {
                                                 </svg>
                                             </Link>
                                             <Link>
-                                                <svg onClick={() => deleteUser(_id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                <svg onClick={() => deleteStore(_id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 16 16">
                                                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                                 </svg>
                                             </Link>
