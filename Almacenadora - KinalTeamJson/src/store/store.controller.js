@@ -2,6 +2,8 @@
 
 const { validateData } = require('../../utils/validate');
 const Store = require('./store.model');
+const Lease = require('../Lease/lease.model');
+const mongoose = require('mongoose');
 
 exports.test = (req, res)=>{
     return res.send({message: 'Test function is running :)'});
@@ -104,6 +106,10 @@ exports.update = async(req, res)=>{
 exports.delete = async(req, res)=>{
     try{
         let storeId = req.params.id;
+        let lease = await Lease.findOne({store: storeId});
+        if(lease){
+            return res.status(400).send({message: 'An user is already leasing the store.'});
+        }
         let deletedStore = await Store.findOneAndDelete({_id: storeId});
         if(!deletedStore){
             return res.status(404).send({message:'Store not found and not deleted'});
