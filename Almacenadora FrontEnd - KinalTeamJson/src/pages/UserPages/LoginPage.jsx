@@ -28,6 +28,7 @@ export const LoginPage = () => {
           if (data.token) {
               setLoggedIn(true)
               localStorage.setItem('token', data.token)
+              localStorage.setItem('role', data.userLogged.role)
               setDataUser({
                 name: data.userLogged.name,
                 username: data.userLogged.username,

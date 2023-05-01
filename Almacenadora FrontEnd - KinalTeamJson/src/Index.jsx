@@ -40,7 +40,16 @@ export const Index = () => {
     
     const [loggedIn, setLoggedIn] = useState(false)
 
-    
+    useEffect(()=>{
+        let token = localStorage.getItem('token')
+        if(token) setLoggedIn(true)
+    }, [])
+
+    useEffect(()=>{
+        let data = dataUser
+        if(data) setDataUser(data);
+    }, [dataUser])
+
 
     const routes = createBrowserRouter([
         {
@@ -62,11 +71,11 @@ export const Index = () => {
                     children: [
                         {
                             path: '',
-                            element: dataUser.role === 'ADMIN' ? <Menu></Menu> : <MenuWorker></MenuWorker>
+                            element: <Menu></Menu> 
                         },
                         {
                             path: 'workers',
-                            element: dataUser.role === 'ADMIN' ? <WorkerPage></WorkerPage> : <NotFoundPage></NotFoundPage>,
+                            element: <WorkerPage></WorkerPage>,
                             children:[
                                 {
                                     path: '',
@@ -102,7 +111,7 @@ export const Index = () => {
                         },
                         {
                             path: 'AdditionalServices',
-                            element: dataUser.role === 'ADMIN' ? <AdditionalServicesPage></AdditionalServicesPage> : <NotFoundPage></NotFoundPage>,
+                            element: <AdditionalServicesPage></AdditionalServicesPage>,
                             children: [
                                 {
                                     path: '',
@@ -147,7 +156,7 @@ export const Index = () => {
     ])
 
     return (
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn, setDataUser }}>
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, dataUser, setDataUser}}>
             <RouterProvider router={routes} />
         </AuthContext.Provider>
     )
