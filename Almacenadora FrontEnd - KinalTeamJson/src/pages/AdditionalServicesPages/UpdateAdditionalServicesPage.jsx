@@ -31,7 +31,7 @@ const headers = {
         price: document.getElementById('price').value,
       }
       const { data } = await axios.put(`http://localhost:2651/additionalServices/updateService/${id}`, updatedAdditionalServices, { headers: headers })
-      console.log(`${data.message} ${data.updatedAdditionalServices.name}`)
+      console.log(`${data.message} ${data.updateService.name}`)
     } catch (err) {
       console.error(err)
     }

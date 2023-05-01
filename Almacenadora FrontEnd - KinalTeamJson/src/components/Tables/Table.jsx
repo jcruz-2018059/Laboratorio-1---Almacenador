@@ -45,7 +45,7 @@ export const Table = () => {
     return (
         <>
             <div className='title'>
-                <h1 className='text-center pt-5 pb-5'>Trabajadores</h1>
+                <h1 className='text-center pt-5 pb-5'>Usuarios</h1>
             </div>
 
             <div className="container">

@@ -32,7 +32,7 @@ export const UpdateClientPage = () => {
         phone: document.getElementById('phone').value,
       }
       const { data } = await axios.put(`http://localhost:2651/client/update/${id}`, updatedClient, { headers: headers })
-      console.log(`${data.message} ${data.updatedClient.name}`)
+      console.log(`${data.message} ${data.updateClient.name}`)
     } catch (err) {
       console.error(err)
     }

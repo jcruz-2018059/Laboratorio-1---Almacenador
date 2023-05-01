@@ -25,7 +25,7 @@ export const TableAdditionalServices = () => {
 
     const deleteAdditionalServices = async (id) => {
         try {
-            let confirmDelete = confirm('Estas seguro de eliminar este cliente?')
+            let confirmDelete = confirm('Estas seguro de eliminar este Servicio?')
             if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:2651/AdditionalServices/delete/${id}`, config)
                 console.log(data)

@@ -64,7 +64,7 @@ exports.updateClient = async(req, res)=>{
             {new: true}
         );
         if(!updateClient) return res.status(404).send({message: 'Client not Found and not update'})
-        return res.send({updateClient})
+        return res.send({message: 'Client Updated', updateClient})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error server, Client not updated'})

@@ -127,7 +127,7 @@ exports.update = async(req, res)=>{
         }
         if(data.username){
             let existUsername = await User.findOne({username: data.username});
-            if(existUsername){
+            if(existUsername._id != userId){
                 return res.status(400).send({message: 'Username already exists'});
             }
         }

@@ -29,7 +29,7 @@ export const TableStore = () => {
 
     const deleteStore = async (id) => {
         try {
-            let confirmDelete = confirm('Estás seguro de eliminar este sitio?')
+            let confirmDelete = confirm('Estás seguro de eliminar esta Bodega?')
             if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:2651/store/delete/${id}`, config)
                 console.log(data)

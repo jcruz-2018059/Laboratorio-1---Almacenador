@@ -51,7 +51,7 @@ exports.updateAdditionalServices = async(req,res)=>{
             {new: true}
         )
         if(!updateService) return res.status(404).send({message: 'Error updating Additional Services'});
-        return res.send({updateService});
+        return res.send({message:'Service Updated', updateService});
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error updating Additional Services', error:err.message});
