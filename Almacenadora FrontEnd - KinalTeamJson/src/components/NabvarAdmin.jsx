@@ -30,7 +30,7 @@ export const NabvarAdmin = () => {
                           <Link to='/start/AdditionalServices' className="nav-link active" aria-current="page">Servicios</Link>
                       </li>
                       <li className="nav-item m-1">
-                          <Link to='/start' className="nav-link active" aria-current="page">Bodegas</Link>
+                          <Link to='/start/store' className="nav-link active" aria-current="page">Bodegas</Link>
                       </li>
                       <li className="nav-item m-1">
                           <Link onClick={()=> logOut()} className="nav-link">Cerrar Sesión</Link>

@@ -45,6 +45,19 @@ exports.get = async(req, res)=>{
     }
 }
 
+exports.getStore = async(req, res)=>{
+    try {
+          let storeid = req.params.id;
+          let store = await Store.findOne({_id:storeid});
+          if(!store) return res.send({message: 'Store not found'});
+          return res.send({store})   
+    } catch (error) {
+        console.error(err);
+        return res.status(500).send({message: 'Error getting store'});
+    }
+
+}
+
 exports.getByAvailability = async(req, res)=>{
     try{
         let availabilityValue = req.params.availability;

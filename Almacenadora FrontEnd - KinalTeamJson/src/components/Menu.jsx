@@ -23,7 +23,7 @@ export const Menu = () => {
                   <div className="card-body text-center">
                       <h3 className="card-title text-light">Gestionar Bodegas</h3>
                       <p className="card-text text-light">Al acceder a esta función, podrá gestionar sus bodegas de forma rápida y sencilla.</p>
-                      <a href="#" className="btn btn-primary">Gestionar</a>
+                      <Link to='store' className="btn btn-primary">Gestionar</Link>
                   </div>
               </div>
           </div>

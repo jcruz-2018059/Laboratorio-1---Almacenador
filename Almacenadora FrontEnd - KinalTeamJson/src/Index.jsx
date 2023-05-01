@@ -19,6 +19,10 @@ import { AdditionalServicesPage } from './pages/AdditionalServicesPages/Addition
 import { TableAdditionalServices } from './components/Tables/TableAdditionalServices'
 import { AddAdditionalServicesPage } from './pages/AdditionalServicesPages/AddAditionalServicesPage'
 import { UpdateAdditionalServices } from './pages/AdditionalServicesPages/UpdateAdditionalServicesPage'
+import { TableStore } from './components/Tables/TableStore'
+import { StorePage } from './pages/Storepages/StorePage'
+import { AddStore } from './pages/Storepages/AddStore'
+import { UpdateStore } from './pages/Storepages/UpdateStore'
 
 
 export const AuthContext = createContext();
@@ -110,7 +114,29 @@ export const Index = () => {
                                     element: <UpdateAdditionalServices></UpdateAdditionalServices>
                                 }
                             ]
-                        }
+                        },
+                        {
+                            path: 'store',
+                            element: <StorePage></StorePage>,
+                            children:[ 
+                                {
+                                    path: '',
+                                    element: <TableStore></TableStore>
+                                },
+
+                                {
+                                    path: 'add',
+                                    element: <AddStore></AddStore>
+                                },
+
+                                {
+                                    path: 'update/:id',
+                                    element: <UpdateStore></UpdateStore>
+                                }
+
+                                
+                            ]
+                        },
                     ]
                 },
             ]
