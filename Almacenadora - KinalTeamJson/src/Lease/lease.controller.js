@@ -37,11 +37,18 @@ exports.addLease = async(req, res)=>{
         let subtotal = storePrice + servicesPrice;
 
         //Params
+        let service = {
+            id: additionalServices._id,
+            name: additionalServices.name,
+            description: additionalServices.description,
+            price: additionalServices.price
+        }
+
         let params = {
             date: data.date,
             client: data.client,
             store: data.store,
-            additionalServices: data.additionalServices,
+            additionalServices: service,
             total: subtotal
         }
 
@@ -67,11 +74,26 @@ exports.addLease = async(req, res)=>{
 exports.addAdditionalServices = async(req,res)=>{
     try{
         let data = req.body; 
-        let serviceID = req.params.id;
-        let validate = validateData();
+        let leaseID = req.params.id;
 
-        let existService = await AdditionalServices.findOne({_id: serviceID});
+        let existLease = await Lease.findOne({_id: leaseID});
+        if(!existLease) return  res.status(404).send({message: 'Lease not found'});
+        let existService = await AdditionalServices.findOne({_id: data.additionalService});
         if(!existService) return res.status(404).send({message: 'Additional Service not found'});
+
+        let seletcService = {
+            id: existService._id,
+            name: existService.name,
+            description: existService.description,
+            price: existService.price,
+        }
+        total = existLease.total + seletcService.price;
+        let updateServiceLease = await Lease.findOneAndUpdate(
+            {_id: leaseID},
+            {$push : {additionalServices: seletcService}, total: total},
+            {new: true}
+        )
+        return res.send({message: 'Additional Service add Successfullly', updateServiceLease})
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error adding additional services', error: err.message});
@@ -82,10 +104,33 @@ exports.updateLease = async(req,res)=>{
     try{
         let data = req.body;
         let leaseID = req.params.id;
-        let beforeStore = await Store.findOne({_id: data.before});
-        let afterStore = await Store.findOne({_id: data.after});
 
-        if(!leaseID &&!beforeStore && !afterStore) return res.status(404).send({message: 'Cellars and Lease not found'});
+        let store = await Lease.findOne({_id: leaseID});
+        
+        let updateStoreBefore = await Store.findOneAndUpdate(
+            {_id: store.store._id},
+            {availability: true},
+            {new: true}   
+        )
+        if(!updateStoreBefore) return res.status(404).send({message: 'Store  not found not update'});
+
+        let updateLease = await Lease.findOneAndUpdate(
+            {_id: leaseID},
+            data,
+            {new: true}
+        )
+        if(!updateLease) return res.status(404).send({message: 'Lease not found not Updated'});
+
+        let updateStoreAfter = await Store.findOneAndUpdate(
+            {_id: data.store},
+            {availability: false},
+            {new: true},
+        )
+        if(!updateStoreAfter) return res.status(404).send({message: 'Store not found not updated'});
+
+        return res.send({updateLease, updateStoreAfter, updateStoreBefore});
+
+       
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error Updating Lease', error: err.message});
@@ -96,23 +141,22 @@ exports.deleteLease = async(req,res)=>{
     try{
         let leaseID = req.params.id;
 
-        let store = await Lease.findOne({_id: leaseID}).populate('store');
-        console.log(store.store._id);
-        
+        let store = await Lease.findOne({_id: leaseID})
+
         let storeUpdate = await Store.findOneAndUpdate(
             {_id: store.store._id},
             {availability: true},
             {new: true}
         )
         if(!storeUpdate) return res.status(404).send({message: 'Store not found, not updated'});
-        
-        let deleteLease = await Lease.findOneAndRemove({_id: leaseID});
-        if(!deleteLease) return res.status(404).send({message: 'Lease not found, not deleted',});
-        return res.send({deleteLease},);
 
-        
+        let deleteLease = await Lease.findOneAndRemove({_id: leaseID});
+        if(!deleteLease) return  res.status(404).send({message: 'Lease not found not deleted'});
+
+        return res.send({deleteLease, storeUpdate});
+
     }catch(err){
         console.error(err);
-        return res.status(500).send({message: 'Error delete Lease', error: err.message});
+        return res.status(500).send({message: 'Error delete '})
     }
 }
