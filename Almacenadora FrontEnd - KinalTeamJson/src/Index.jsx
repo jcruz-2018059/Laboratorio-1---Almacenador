@@ -23,6 +23,8 @@ import { TableStore } from './components/Tables/TableStore'
 import { StorePage } from './pages/Storepages/StorePage'
 import { AddStore } from './pages/Storepages/AddStore'
 import { UpdateStore } from './pages/Storepages/UpdateStore'
+import { useContext } from 'react'
+import { MenuWorker } from './components/MenuWorker'
 
 
 export const AuthContext = createContext();
@@ -30,14 +32,15 @@ export const AuthContext = createContext();
 
 
 export const Index = () => {
-
-
+    const [dataUser, setDataUser] = useState({
+        name: '',
+        username: '',
+        role: ''
+      })
+    
     const [loggedIn, setLoggedIn] = useState(false)
 
-    useEffect(() => {
-        let token = localStorage.getItem('token')
-        if (token) setLoggedIn(true)
-    }, [])
+    
 
     const routes = createBrowserRouter([
         {
@@ -59,11 +62,11 @@ export const Index = () => {
                     children: [
                         {
                             path: '',
-                            element: <Menu></Menu>
+                            element: dataUser.role === 'ADMIN' ? <Menu></Menu> : <MenuWorker></MenuWorker>
                         },
                         {
                             path: 'workers',
-                            element: <WorkerPage></WorkerPage>,
+                            element: dataUser.role === 'ADMIN' ? <WorkerPage></WorkerPage> : <NotFoundPage></NotFoundPage>,
                             children:[
                                 {
                                     path: '',
@@ -99,7 +102,7 @@ export const Index = () => {
                         },
                         {
                             path: 'AdditionalServices',
-                            element: <AdditionalServicesPage></AdditionalServicesPage>,
+                            element: dataUser.role === 'ADMIN' ? <AdditionalServicesPage></AdditionalServicesPage> : <NotFoundPage></NotFoundPage>,
                             children: [
                                 {
                                     path: '',
@@ -144,7 +147,7 @@ export const Index = () => {
     ])
 
     return (
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, setDataUser }}>
             <RouterProvider router={routes} />
         </AuthContext.Provider>
     )

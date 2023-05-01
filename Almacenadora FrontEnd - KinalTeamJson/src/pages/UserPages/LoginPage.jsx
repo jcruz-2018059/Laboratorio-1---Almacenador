@@ -8,7 +8,7 @@ import { Navbar } from '../../components/Nabvar'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
-  const { setLoggedIn, loggedIn } = useContext(AuthContext);
+  const { setLoggedIn, loggedIn, setDataUser } = useContext(AuthContext);
   const [form, setForm] = useState({
       username: '',
       password: ''
@@ -27,8 +27,12 @@ export const LoginPage = () => {
           const { data } = await axios.post('http://localhost:2651/user/login', form)
           if (data.token) {
               setLoggedIn(true)
-              console.log(loggedIn)
               localStorage.setItem('token', data.token)
+              setDataUser({
+                name: data.userLogged.name,
+                username: data.userLogged.username,
+                role: data.userLogged.role
+              })
               navigate('/start')
           }
       } catch (err) {
