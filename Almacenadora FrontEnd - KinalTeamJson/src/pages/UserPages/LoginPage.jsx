@@ -52,7 +52,7 @@ export const LoginPage = () => {
               <div className="card">
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block">
-                  <img src='src\assets\Login - Image.jpg'
+                  <img src='src\assets\Login.jpg'
                       alt="login form" className="img-fluid h-100 vw-100"  />
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
