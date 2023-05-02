@@ -49,8 +49,8 @@ export const AddAdditionalServicesPage = () => {
                         <input type="number" className="form-control" id="price" required/>
                     </div>
                     <div className="row">
-                        <Link to='/start/AdditionalServices'>
-                        <button onClick={()=> addAdditionalServices()} type="submit" className="btn btn-primary">Registrarse</button>
+                        <Link className='col-md-12 text-center' to='/start/AdditionalServices'>
+                        <button onClick={()=> addAdditionalServices()} type="submit" className="btn btn-primary w-100">Registrar Servicio</button>
                         </Link>
                     </div>
                 </form>

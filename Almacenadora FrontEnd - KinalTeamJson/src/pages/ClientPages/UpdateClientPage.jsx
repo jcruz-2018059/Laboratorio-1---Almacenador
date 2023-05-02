@@ -60,15 +60,13 @@ export const UpdateClientPage = () => {
             <label htmlFor="contrasena" className="form-label">Dpi</label>
             <input defaultValue={client.dpi} type="text" className="form-control" id="dpi" required />
           </div>
-          <div>
-            <div className="col-md-6">
-              <div className="mb-3">
+          <div className="mb-3">
               <label htmlFor="apellido" className="form-label">Phone</label>
                 <input defaultValue={client.phone} type="text" className="form-control" id="phone" required />
               </div>
-            </div>
-            <Link to='/start/clients' className='text-center'>
-              <button onClick={() => updateClient()} type="submit" className="btn btn-primary">Editar</button>
+          <div>
+            <Link  to='/start/clients' className='col-md-12 text-center'>
+              <button onClick={() => updateClient()} type="submit" className="btn btn-primary w-100">Editar Cliente</button>
             </Link>
           </div>
         </form>

@@ -9,5 +9,6 @@ api.post('/add', ensureAuth, clientController.addClient);
 api.get('/get/:id', ensureAuth, clientController.getClient);
 api.get('/get', ensureAuth, clientController.getClients);
 api.put('/update/:id', ensureAuth, clientController.updateClient);
+api.delete('/delete/:id', ensureAuth, clientController.deleteClient)
 
 module.exports = api;

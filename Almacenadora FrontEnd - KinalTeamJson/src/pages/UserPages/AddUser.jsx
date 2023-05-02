@@ -68,8 +68,8 @@ export const AddUser = () => {
                                 <input type="number" className="form-control" id="phone" required/>
                             </div>
                         </div>
-                        <Link to='/start/workers'>
-                        <button onClick={()=>  addUser()} type="submit" className="btn btn-primary">Registrarse</button>
+                        <Link className='col-md-12 text-center' to='/start/workers'>
+                        <button onClick={()=>  addUser()} type="submit" className="btn btn-primary w-100">Registrar Usuario</button>
                         </Link>
                     </div>
                 </form>

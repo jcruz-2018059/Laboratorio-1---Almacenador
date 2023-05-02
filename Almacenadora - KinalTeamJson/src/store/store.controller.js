@@ -83,8 +83,8 @@ exports.update = async(req, res)=>{
             return res.status(400).send({message: 'Data cannot be updated'});
         }
         if(data.name){
-            let existStore = await Store.findOne({name: data.name});
-            if(existStore){
+            let existStoreByName = await Store.findOne({name: data.name});
+            if(existStoreByName && existStoreByName._id.toString() !== storeId){
                 return res.status(400).send({message: 'Store already exists'});
             }
         }

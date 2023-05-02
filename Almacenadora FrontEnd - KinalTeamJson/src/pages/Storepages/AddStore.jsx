@@ -69,8 +69,8 @@ export const AddStore = () => {
                                 <input type="number" className="form-control" id="price" required/>
                             </div>
                         </div>
-                        <Link to='/start/store'>
-                        <button onClick={()=>  addStore()} type="submit" className="btn btn-primary">Agregar</button>
+                        <Link className='col-md-12 text-center' to='/start/store'>
+                        <button onClick={()=>  addStore()} type="submit" className="btn btn-primary w-100">Agregar Bodega</button>
                         </Link>
                     </div>
                 </form>

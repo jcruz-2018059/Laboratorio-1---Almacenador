@@ -104,8 +104,8 @@ export const AddLeasePage = () => {
                             }
                         </select>
                     </div>
-                    <Link to='/start/lease'>
-                        <button onClick={() => addLease()} type="submit" className="btn btn-primary">Agregar</button>
+                    <Link to='/start/lease' className='col-md-12 text-center'>
+                        <button onClick={() => addLease()} type="submit" className="btn btn-primary w-100">Agregar</button>
                     </Link>
                 </form>
             </div>

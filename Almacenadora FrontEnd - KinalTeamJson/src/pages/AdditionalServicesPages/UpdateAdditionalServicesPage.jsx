@@ -59,8 +59,8 @@ const headers = {
             <label htmlFor="contrasena" className="form-label">Precio</label>
             <input defaultValue={additionalServices.price} type="text" className="form-control" id="price" required />
           </div>
-            <Link to='/start/AdditionalServices' className='text-center'>
-              <button onClick={() => updateAdditionalServices()} type="submit" className="btn btn-primary">Editar</button>
+            <Link  to='/start/AdditionalServices' className='col-md-12 text-center'>
+              <button onClick={() => updateAdditionalServices()} type="submit" className="btn btn-primary w-100">Editar Servicio</button>
             </Link>
         </form>
       </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const NabvarAdmin = () => {
+    const role = localStorage.getItem('role')
 
     const logOut = ()=>{
         localStorage.clear()
@@ -15,7 +16,9 @@ export const NabvarAdmin = () => {
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              {
+                role == 'ADMIN' ? (
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                       <li className="nav-item m-1">
                           <Link to='/start' className="nav-link active" aria-current="page">Tablero</Link>
@@ -36,7 +39,27 @@ export const NabvarAdmin = () => {
                         <Link onClick={()=> logOut()} className="nav-link">Cerrar Sesión</Link>
                       </li> 
                   </ul>
-              </div>
+              </div>): <></>
+              }
+              {
+                role == 'WORKER' ? (
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                      <li className="nav-item m-1">
+                          <Link to='/start' className="nav-link active" aria-current="page">Tablero</Link>
+                      </li>
+                      <li className="nav-item m-1">
+                          <Link to='/start/clients' className="nav-link active" aria-current="page">Clientes</Link>
+                      </li>
+                      <li className="nav-item m-1">
+                          <Link to='/start/lease' className="nav-link active" aria-current="page">Arrendamientos</Link>
+                      </li>
+                      <li className="nav-item m-1">
+                        <Link onClick={()=> logOut()} className="nav-link">Cerrar Sesión</Link>
+                      </li> 
+                  </ul>
+              </div>): <></>
+              }
           </div>
       </nav>
   )

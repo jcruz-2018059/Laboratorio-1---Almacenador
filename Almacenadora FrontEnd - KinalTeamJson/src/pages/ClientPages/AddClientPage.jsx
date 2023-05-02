@@ -56,8 +56,8 @@ export const AddClientPage = () => {
                         <input type="number" className="form-control" id="phone" required/>
                     </div>
                     <div className="row">
-                        <Link to='/start/clients'>
-                        <button onClick={()=> addClient()} type="submit" className="btn btn-primary">Registrarse</button>
+                        <Link className='col-md-12 text-center' to='/start/clients'>
+                        <button onClick={()=> addClient()} type="submit" className="btn btn-primary w-100">Registrar Cliente</button>
                         </Link>
                     </div>
                 </form>

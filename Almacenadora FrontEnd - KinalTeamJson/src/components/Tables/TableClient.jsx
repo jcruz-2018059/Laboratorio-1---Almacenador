@@ -33,6 +33,7 @@ export const TableClient = () => {
                 const { data } = await axios.delete(`http://localhost:2651/client/delete/${id}`, config)
                 console.log(data)
                 getClients()
+                alert(data.message)
             }
         } catch (err) {
             console.log(err)

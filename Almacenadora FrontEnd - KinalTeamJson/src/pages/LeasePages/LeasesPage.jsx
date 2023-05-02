@@ -51,10 +51,6 @@ export const LeasesPage = () => {
                     <Link to='/start'>
                         <button className='btn btn-primary'>Volver al tablero</button>
                     </Link>
-                    <form className="d-flex ms-auto " role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-primary" type="submit">Search</button>
-                    </form>
                     <Link to='add' className='ms-auto'>
                         <button className='btn btn-secondary'>Agregar Arrendamiento</button>
                     </Link>

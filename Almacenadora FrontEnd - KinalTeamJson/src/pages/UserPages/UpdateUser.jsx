@@ -74,8 +74,8 @@ export const UpdateUser = () => {
                 <input defaultValue={user.phone} type="text" className="form-control" id="phone" required />
               </div>
             </div>
-            <Link to='/start/workers' className='text-center'>
-              <button onClick={() => updateUser()} type="submit" className="btn btn-primary">Editar</button>
+            <Link to='/start/workers' className='col-md-12 text-center'>
+              <button onClick={() => updateUser()} type="submit" className="btn btn-primary w-100">Editar Usuario</button>
             </Link>
           </div>
         </form>

@@ -62,6 +62,10 @@ export const UpdateStore = () => {
             <label htmlFor="contrasena" className="form-label">Ubicacion</label>
             <input defaultValue={store.location} type="text" className="form-control" id="location" required />
           </div>
+          <div className="mb-3">
+                <label htmlFor="apellido" className="form-label">Precio</label>
+                <input defaultValue={store.price} type="text" className="form-control" id="price" required />
+              </div>
           <div className="row">
             <div className="col-md-6">
               <div className="mb-3">
@@ -74,13 +78,9 @@ export const UpdateStore = () => {
                 <label htmlFor="apellido" className="form-label">Disponibilidad</label>
                 <input defaultValue={store.availability} type="text" className="form-control" id="availability" required />
               </div>
-              <div className="mb-3">
-                <label htmlFor="apellido" className="form-label">Precio</label>
-                <input defaultValue={store.price} type="text" className="form-control" id="price" required />
-              </div>
             </div>
-            <Link to='/start/store' className='text-center'>
-              <button onClick={() => updateStore()} type="submit" className="btn btn-primary">Editar</button>
+            <Link to='/start/store' className='col-md-12 text-center'>
+              <button onClick={() => updateStore()} type="submit" className="btn btn-primary w-100">Editar Bodega</button>
             </Link>
           </div>
         </form>

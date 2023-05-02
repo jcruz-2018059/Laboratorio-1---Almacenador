@@ -1,6 +1,7 @@
 'use strict'
 
 const Client = require('./client.model');
+const Lease = require('../Lease/lease.model');
 const e = require('express');
 
 exports.test = (req, res)=>{
@@ -71,3 +72,19 @@ exports.updateClient = async(req, res)=>{
     }
 }
 
+exports.deleteClient = async(req, res)=>{
+    try{
+        let clientId = req.params.id;
+        let existClient = await Client.findOne({_id: clientId})
+        let leaseClient = await Lease.find({client: clientId})
+        if(!existClient) return res.send({message: 'Client doesn´t exist'})
+            if(leaseClient.length > 0) return res.send({message: 'user leasing warehouse'})
+            let deleteClient = await Client.findByIdAndDelete({_id:clientId})
+            if(!deleteClient){
+                return res.status(404).send({message:'Client not found and not deleted'});
+            }
+            return res.send({message: 'Client deleted sucessfully', deleteClient});
+    }catch(err){
+        console.error(err)
+    }
+}
