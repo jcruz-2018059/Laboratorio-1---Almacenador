@@ -28,6 +28,7 @@ import { LeasePage } from './pages/LeasePages/LeasePage'
 import { LeasesPage } from './pages/LeasePages/LeasesPage'
 import { AddLeasePage } from './pages/LeasePages/AddLeasePage'
 import { AddServices } from './pages/LeasePages/AddServices'
+import { EditLeasePage } from './pages/LeasePages/EditLeasePage'
 
 
 export const AuthContext = createContext();
@@ -168,6 +169,10 @@ export const Index = () => {
                                     path: 'addService/:id',
                                     
                                     element: <AddServices></AddServices>
+                                },
+                                {
+                                    path: 'edit/:id',
+                                    element: <EditLeasePage></EditLeasePage>
                                 }
                             ]
                         }

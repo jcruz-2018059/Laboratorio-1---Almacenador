@@ -48,6 +48,7 @@ useEffect(() => getLeases, [])
                       <p className="card-text">Precio: Q{total}</p>
                       <a onClick={() => deleteLease(idCard)}className="btn btn-primary">Eliminar</a>
                       <Link to={`addService/${idCard}`} className="btn btn-primary m-2">Añadir servicio</Link>
+                      <Link to={`edit/${idCard}`} className="btn btn-primary m-2">Editar bodega</Link>
                   </div>
           </div>
       </>
