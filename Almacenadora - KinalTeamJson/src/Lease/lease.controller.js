@@ -23,12 +23,24 @@ exports.getStoreDisabled = async(req, res)=>{
     }
 }
 
+
+exports.getLeases = async(req, res)=>{
+    try{
+        let leases = await Lease.find({}).populate('client').populate('store')
+        if(!leases) return res.send({message: 'Leases not found'})
+        return res.send({message: 'Leases Found', leases})
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error not found leases', error: err.message});
+    }
+} 
+
 exports.addLease = async(req, res)=>{
     try{
         let data = req.body;
         //ID
         let store = await Store.findOne({_id: data.store});
-        let client = await Client.find({_id: data.client});
+        let client = await Client.findOne({_id: data.client});
         let additionalServices = await AdditionalServices.findOne({_id: data.additionalServices});
         //Price
         let storePrice = store.price;
@@ -63,7 +75,7 @@ exports.addLease = async(req, res)=>{
         if(!updatadeAvailability) return res.status(404).send({message: 'Store Can not be updated'});
         let lease = new Lease(params);
         await lease.save();
-        return res.send({message: 'Availability store is update', lease});
+        return res.send({message: 'Availability store is Created', lease});
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error adding a Lease', error: err.message});

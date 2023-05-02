@@ -1,3 +1,5 @@
+import React from "react"
+
 export const Clients = ({name, surname, dpi, phone})=>{
     return (
         <>

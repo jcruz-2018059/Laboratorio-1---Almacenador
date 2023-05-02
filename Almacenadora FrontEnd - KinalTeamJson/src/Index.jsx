@@ -1,5 +1,4 @@
 import App from './App'
-import './index.css'
 import React, {createContext, useState, useEffect} from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LoginPage } from './pages/UserPages/LoginPage.jsx'
@@ -25,6 +24,10 @@ import { AddStore } from './pages/Storepages/AddStore'
 import { UpdateStore } from './pages/Storepages/UpdateStore'
 import { useContext } from 'react'
 import { MenuWorker } from './components/MenuWorker'
+import { LeasePage } from './pages/LeasePages/LeasePage'
+import { LeasesPage } from './pages/LeasePages/LeasesPage'
+import { AddLeasePage } from './pages/LeasePages/AddLeasePage'
+import { AddServices } from './pages/LeasePages/AddServices'
 
 
 export const AuthContext = createContext();
@@ -149,6 +152,25 @@ export const Index = () => {
                                 
                             ]
                         },
+                        {
+                            path: 'Lease',
+                            element: <LeasePage></LeasePage>,
+                            children:[
+                                {
+                                    path: '',
+                                    element: <LeasesPage></LeasesPage>
+                                },
+                                {
+                                    path: 'add',
+                                    element: <AddLeasePage></AddLeasePage>
+                                },
+                                {
+                                    path: 'addService/:id',
+                                    
+                                    element: <AddServices></AddServices>
+                                }
+                            ]
+                        }
                     ]
                 },
             ]

@@ -1,3 +1,4 @@
+import React from "react"
 export const Users = ({name, surname, username, email, phone})=>{ //PROPS -> parámetros que se envían al mmomento de llamar el componente (la función)
     return (
         <>

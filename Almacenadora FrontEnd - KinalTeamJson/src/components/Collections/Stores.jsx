@@ -1,4 +1,4 @@
-
+import React from "react"
 export const Stores = ({name, description, 
     location, size, availability, price}) => {
   return (

@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const leaseSchema = mongoose.Schema({
     date:{
         type: Date,
-        required: true,
         default: Date()
     },
     client: {
