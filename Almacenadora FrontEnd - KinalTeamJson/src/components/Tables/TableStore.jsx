@@ -15,13 +15,14 @@ export const TableStore = () => {
     }
 
     const [store, setStore] = useState([{}])
+    const [name, setSearchName] = useState('');
 
 
     const getStore = async () => {
         try {
             const { data } = await axios('http://localhost:2651/store/get', config)
             setStore(data.stores)
-
+            console.log(data.stores)
         } catch (err) {
             console.log(err)
         }
@@ -34,11 +35,23 @@ export const TableStore = () => {
                 const { data } = await axios.delete(`http://localhost:2651/store/delete/${id}`, config)
                 console.log(data)
                 getStore()
+                alert(data.message)
             }
         } catch (err) {
             console.error(err)
         }
     }
+
+    const searchStores = async (e) => {
+        e.preventDefault();
+        try {
+          const { data } = await axios(`http://localhost:2651/store/getByName/${name}`, config);
+          console.log(data)
+          setStore(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
 
     useEffect(() => getStore, [])
 
@@ -53,8 +66,8 @@ export const TableStore = () => {
                     <Link to='/start'>
                         <button className='btn btn-primary'>Volver al tablero</button>
                     </Link>
-                    <form className="d-flex ms-auto " role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="d-flex ms-auto " role="search" onSubmit={searchStores} >
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={name} onChange={(e) => setSearchName(e.target.value)}  />
                         <button className="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                     <Link to='add' className='ms-auto'>

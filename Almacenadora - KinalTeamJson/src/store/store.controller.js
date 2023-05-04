@@ -60,6 +60,19 @@ exports.getStore = async(req, res)=>{
 
 }
 
+exports.getStoreByName = async (req, res) => {
+    try {
+      const name = req.params.name;
+      const store = await Store.find({name});
+  
+      if (!store) return res.status(404).json({ message: 'No se encontró la bodega' });
+      return res.send(store);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send({ message: 'Error interno del servidor' });}
+    }
+  
+
 exports.getByAvailability = async(req, res)=>{
     try{
         let availabilityValue = req.params.availability;

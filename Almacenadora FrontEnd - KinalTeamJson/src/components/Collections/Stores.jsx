@@ -7,8 +7,8 @@ export const Stores = ({name, description,
         <td>{description}</td>
         <td>{location}</td>
         <td>{size}</td>
-        <td>{availability}</td>
-        <td>{price}</td>
+        <td>{availability ? "Disponible" : "No disponible"}</td>
+        <td>Q{price}</td>
     </>
   )
 }

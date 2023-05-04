@@ -60,7 +60,10 @@ export const AddStore = () => {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="nombre" className="form-label">Disponibilidad</label>
-                                <input type="text" className="form-control" id="availability" required/>
+                                <select className="form-control" id="availability" required>
+                                <option value="true">Disponible</option>
+                                <option value="false">No disponible</option>
+                                </select>
                             </div>
                         </div>
                         <div className="col-md-6">

@@ -40,7 +40,7 @@ export const UpdateStore = () => {
     }
   }
 
-  useEffect(() => getStore,[])
+  useEffect(() => getStore, [])
 
 
   return (
@@ -52,20 +52,20 @@ export const UpdateStore = () => {
         <form>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">Nombre</label>
-            <input defaultValue={store.name}  type="text" className="form-control" id="name" required />
+            <input defaultValue={store.name} type="text" className="form-control" id="name" required />
           </div>
           <div className="mb-3">
             <label htmlFor="contrasena" className="form-label">Descripcion</label>
-            <input defaultValue={store.description}  type="text" className="form-control" id="description" required />
+            <input defaultValue={store.description} type="text" className="form-control" id="description" required />
           </div>
           <div className="mb-3">
             <label htmlFor="contrasena" className="form-label">Ubicacion</label>
             <input defaultValue={store.location} type="text" className="form-control" id="location" required />
           </div>
           <div className="mb-3">
-                <label htmlFor="apellido" className="form-label">Precio</label>
-                <input defaultValue={store.price} type="text" className="form-control" id="price" required />
-              </div>
+            <label htmlFor="apellido" className="form-label">Precio</label>
+            <input defaultValue={store.price} type="text" className="form-control" id="price" required />
+          </div>
           <div className="row">
             <div className="col-md-6">
               <div className="mb-3">
@@ -76,7 +76,10 @@ export const UpdateStore = () => {
             <div className="col-md-6">
               <div className="mb-3">
                 <label htmlFor="apellido" className="form-label">Disponibilidad</label>
-                <input defaultValue={store.availability} type="text" className="form-control" id="availability" required />
+                <select className="form-control" id="availability" required>
+                  <option defaultValue={store.availability} value="true">Disponible</option>
+                  <option value="false">No disponible</option>
+                </select>
               </div>
             </div>
             <Link to='/start/store' className='col-md-12 text-center'>
