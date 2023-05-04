@@ -53,6 +53,18 @@ export const TableStore = () => {
         }
       }
 
+      
+      const searchByAvailability = async() =>{
+        try{
+            const availability = true
+            const { data } = await axios(`http://localhost:2651/store/getAvailability/${availability}`, config);
+            console.log(data)
+            setStore(data.stores);
+        }catch(err){
+            console.error(err)
+        }
+      }
+
     useEffect(() => getStore, [])
 
     return (
@@ -66,10 +78,11 @@ export const TableStore = () => {
                     <Link to='/start'>
                         <button className='btn btn-primary'>Volver al tablero</button>
                     </Link>
-                    <form className="d-flex ms-auto " role="search" onSubmit={searchStores} >
+                    <form className="d-flex ms-auto m-1 " role="search" onSubmit={searchStores} >
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={name} onChange={(e) => setSearchName(e.target.value)}  />
                         <button className="btn btn-outline-primary" type="submit">Search</button>
                     </form>
+                    <button onClick={() => searchByAvailability()} className='btn btn-primary '>Ver Bodegas disponibles</button>
                     <Link to='add' className='ms-auto'>
                         <button className='btn btn-secondary'>Agregar Bodega</button>
                     </Link>
