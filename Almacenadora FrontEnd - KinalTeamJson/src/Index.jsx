@@ -79,7 +79,7 @@ export const Index = () => {
                         },
                         {
                             path: 'workers',
-                            element: role == 'ADMIN' ? <WorkerPage></WorkerPage> : <NotFoundPage /> ,
+                            element: role != 'WORKER' ? <WorkerPage></WorkerPage> : <NotFoundPage /> ,
                             children:[
                                 {
                                     path: '',
@@ -115,7 +115,7 @@ export const Index = () => {
                         },
                         {
                             path: 'AdditionalServices',
-                            element: role == 'ADMIN' ? <AdditionalServicesPage></AdditionalServicesPage> : <NotFoundPage /> ,
+                            element: role != 'WORKER' ? <AdditionalServicesPage></AdditionalServicesPage> : <NotFoundPage /> ,
                             children: [
                                 {
                                     path: '',
@@ -133,7 +133,7 @@ export const Index = () => {
                         },
                         {
                             path: 'store',
-                            element: role == 'ADMIN' ? <StorePage></StorePage> : <NotFoundPage /> ,
+                            element: role != 'WORKER' ? <StorePage></StorePage> : <NotFoundPage /> ,
                             children:[ 
                                 {
                                     path: '',
