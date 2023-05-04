@@ -121,7 +121,7 @@ exports.delete = async(req, res)=>{
         let storeId = req.params.id;
         let lease = await Lease.findOne({store: storeId});
         if(lease){
-            return res.status(400).send({message: 'An user is already leasing the store.'});
+            return res.send({message: 'An user is already leasing the store.'});
         }
         let deletedStore = await Store.findOneAndDelete({_id: storeId});
         if(!deletedStore){

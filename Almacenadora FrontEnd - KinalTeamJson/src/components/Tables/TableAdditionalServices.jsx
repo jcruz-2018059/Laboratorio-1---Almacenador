@@ -42,7 +42,7 @@ export const TableAdditionalServices = () => {
                     </Link>
                 </div>
                 <table className="table">
-                    <thead>
+                    <thead className='table-dark'>
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>

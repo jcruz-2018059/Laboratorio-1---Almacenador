@@ -33,7 +33,7 @@ export const TableStore = () => {
             let confirmDelete = confirm('Estás seguro de eliminar esta Bodega?')
             if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:2651/store/delete/${id}`, config)
-                console.log(data)
+                console.log(data.message)
                 getStore()
                 alert(data.message)
             }
@@ -88,7 +88,7 @@ export const TableStore = () => {
                     </Link>
                 </div>
                 <table className="table">
-                    <thead>
+                    <thead className='table-dark'>
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripcion</th>

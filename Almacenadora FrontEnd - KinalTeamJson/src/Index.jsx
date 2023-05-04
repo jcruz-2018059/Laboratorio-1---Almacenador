@@ -32,7 +32,7 @@ import { EditLeasePage } from './pages/LeasePages/EditLeasePage'
 
 
 export const AuthContext = createContext();
-
+const role = localStorage.getItem('role')
 
 
 export const Index = () => {
@@ -79,7 +79,7 @@ export const Index = () => {
                         },
                         {
                             path: 'workers',
-                            element: <WorkerPage></WorkerPage>,
+                            element: role == 'ADMIN' ? <WorkerPage></WorkerPage> : <NotFoundPage /> ,
                             children:[
                                 {
                                     path: '',
@@ -115,7 +115,7 @@ export const Index = () => {
                         },
                         {
                             path: 'AdditionalServices',
-                            element: <AdditionalServicesPage></AdditionalServicesPage>,
+                            element: role == 'ADMIN' ? <AdditionalServicesPage></AdditionalServicesPage> : <NotFoundPage /> ,
                             children: [
                                 {
                                     path: '',
@@ -133,7 +133,7 @@ export const Index = () => {
                         },
                         {
                             path: 'store',
-                            element: <StorePage></StorePage>,
+                            element: role == 'ADMIN' ? <StorePage></StorePage> : <NotFoundPage /> ,
                             children:[ 
                                 {
                                     path: '',

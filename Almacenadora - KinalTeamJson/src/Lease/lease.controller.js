@@ -112,12 +112,13 @@ exports.addAdditionalServices = async(req,res)=>{
     }
 }
 
-exports.updateLease = async(req,res)=>{
+/*exports.updateLease = async(req,res)=>{
     try{
         let data = req.body;
         let leaseID = req.params.id;
 
         let store = await Lease.findOne({_id: leaseID});
+        let stores = await Store.findOne({_id: store.store})
         
         let updateStoreBefore = await Store.findOneAndUpdate(
             {_id: store.store._id},
@@ -140,12 +141,64 @@ exports.updateLease = async(req,res)=>{
         )
         if(!updateStoreAfter) return res.status(404).send({message: 'Store not found not updated'});
 
-        return res.send({updateLease, updateStoreAfter, updateStoreBefore});
+            let basePrice = updateLease.total;
+            let priceBefore = store.price         
+            let newStorePrice = await Store.findOne({_id: data.store}, {price: 1});
+            let totalPrice = basePrice - priceBefore;
+            let definitivePrice = totalPrice + newStorePrice
+            updateLease.total = definitivePrice;
+            await updateLease.save();
+
+            return res.send({updateLease, updateStoreAfter, updateStoreBefore});
 
        
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error Updating Lease', error: err.message});
+    }
+}*/
+
+exports.updateLease = async(req,res)=>{
+    try{
+        let data = req.body;
+        let leaseID = req.params.id;
+
+        let store = await Lease.findOne({_id: leaseID});
+        let stores = await Store.findOne({_id: store.store})
+        
+        let updateStoreBefore = await Store.findOneAndUpdate(
+            {_id: store.store._id},
+            {availability: true},
+            {new: true}   
+        )
+        if(!updateStoreBefore) return res.status(404).send({message: 'Store not found not updated'});
+
+        let updateLease = await Lease.findOneAndUpdate(
+            {_id: leaseID},
+            data,
+            {new: true}
+        )
+        if(!updateLease) return res.status(404).send({message: 'Lease not found not updated'});
+
+        let updateStoreAfter = await Store.findOneAndUpdate(
+            {_id: data.store},
+            {availability: false},
+            {new: true},
+        )
+        if(!updateStoreAfter) return res.status(404).send({message: 'Store not found not updated'});
+
+        let basePrice = updateLease.total;
+        let priceBefore = stores.price;
+        let newStorePrice = await Store.findOne({_id: data.store}, {price: 1});
+        let totalPrice = (basePrice - priceBefore) + newStorePrice.price;
+        updateLease.total = totalPrice;
+        await updateLease.save();
+
+        return res.send({updateLease, updateStoreAfter, updateStoreBefore});
+
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error updating lease', error: err.message});
     }
 }
 
