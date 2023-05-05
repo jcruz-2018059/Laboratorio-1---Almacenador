@@ -33,7 +33,6 @@ exports.addLease = async(req, res)=>{
         //Price
         let storePrice = store.price;
         let servicesPrice = additionalServices.price;
-        console.log(servicesPrice);
         let subtotal = storePrice + servicesPrice;
 
         //Params
@@ -102,23 +101,41 @@ exports.addAdditionalServices = async(req,res)=>{
 
 exports.updateLease = async(req,res)=>{
     try{
+        //ID
         let data = req.body;
         let leaseID = req.params.id;
+        let lease = await Lease.findOne({_id: leaseID});
+        if(!lease) return res.status(404).send({message:'Lease not found'});
+        let storeBefore = await Store.findOne({_id: lease.store});
+        let newStore = await Store.findOne({_id: data.store});
 
-        let store = await Lease.findOne({_id: leaseID});
+        //datos de total
+        let leaseTotalBefore = lease.total;
+        let storePriceBefore = storeBefore.price;
+        let newStorePrice = newStore.price;
+
+        let subtotal = leaseTotalBefore - storePriceBefore;
+        let newTotal = subtotal + newStorePrice;
+        
+
         
         let updateStoreBefore = await Store.findOneAndUpdate(
-            {_id: store.store._id},
+            {_id: storeBefore._id},
             {availability: true},
             {new: true}   
         )
         if(!updateStoreBefore) return res.status(404).send({message: 'Store  not found not update'});
 
+        let params =  {
+            store: newStore,
+            total: newTotal
+        }
+
         let updateLease = await Lease.findOneAndUpdate(
             {_id: leaseID},
-            data,
+            params,
             {new: true}
-        )
+        ).populate('store').populate('client')
         if(!updateLease) return res.status(404).send({message: 'Lease not found not Updated'});
 
         let updateStoreAfter = await Store.findOneAndUpdate(
